@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Battleship CLI</title>
+</head>
+<body style="background:black; color:lime;">
+    <pre id="terminal"></pre>
+    <input id="input" autofocus />
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+        const terminal = document.getElementById('terminal');
+        const input = document.getElementById('input');
+
+        socket.on('output', (data) => {
+            terminal.textContent += data;
+        });
+
+        input.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                socket.emit('input', input.value);
+                input.value = '';
+            }
+        });
+    </script>
+</body>
+</html>
