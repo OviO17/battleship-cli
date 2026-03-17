@@ -34,10 +34,10 @@ def get_guess():
 
 
 # ------------------ GAME ------------------
-
 def play_game():
     board = create_board()
     ship = place_ship()
+    guesses = []
 
     print("Welcome to Battleship!\n")
 
@@ -48,6 +48,12 @@ def play_game():
 
         if guess is None:
             continue
+
+        if guess in guesses:
+            print("You already guessed that spot!\n")
+            continue
+
+        guesses.append(guess)
 
         row, col = guess
 
