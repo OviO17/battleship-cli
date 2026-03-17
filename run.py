@@ -1,5 +1,6 @@
 import random
 import os
+import json
 
 # ------------------ BOARD ------------------
 
@@ -31,6 +32,22 @@ def get_guess():
     except:
         print("Invalid input")
         return None
+    
+   # ------------------ DATA ------------------
+
+def save_score(result):
+    data = {"result": result}
+
+    try:
+        with open("scores.json", "r") as file:
+            scores = json.load(file)
+    except:
+        scores = []
+
+    scores.append(data)
+
+    with open("scores.json", "w") as file:
+        json.dump(scores, file, indent=4)
 
 
 # ------------------ GAME ------------------
@@ -61,6 +78,7 @@ def play_game():
             board[row][col] = "S"
             print("\n🎯 You sunk the ship!")
             print_board(board)
+            save_score("Win")
             return
         else:
             print("Miss!\n")
@@ -68,6 +86,7 @@ def play_game():
 
     print("\nGame Over!")
     print(f"The ship was at {ship}")
+    save_score("Loss")
 
 
 # ------------------ RUN ------------------
