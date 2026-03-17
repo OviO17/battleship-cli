@@ -19,6 +19,10 @@ io.on('connection', (socket) => {
         socket.emit('output', data.toString());
     });
 
+    python.stderr.on('data', (data) => {
+        socket.emit('output', data.toString());
+    });
+
     socket.on('input', (data) => {
         python.stdin.write(data + '\n');
     });

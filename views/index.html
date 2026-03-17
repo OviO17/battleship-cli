@@ -3,7 +3,8 @@
 <head>
     <title>Battleship CLI</title>
 </head>
-<body style="background:black; color:lime;">
+<body style="background:black; color:lime; font-family: monospace;">
+    
     <pre id="terminal"></pre>
     <input id="input" autofocus />
 
@@ -15,6 +16,7 @@
 
         socket.on('output', (data) => {
             terminal.textContent += data;
+            window.scrollTo(0, document.body.scrollHeight);
         });
 
         input.addEventListener('keydown', function(e) {
@@ -24,5 +26,6 @@
             }
         });
     </script>
+
 </body>
 </html>
