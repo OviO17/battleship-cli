@@ -27,11 +27,18 @@ def display_logo():
 """)
 
 def welcome():
-    print(Fore.GREEN + "=" * 50)
-    print("🎮 Welcome to Battleship CLI 🎮".center(50))
-    print("=" * 50)
-    print("\nTry to sink the hidden ships.")
-    print("You have limited turns. Good luck!\n")
+    width = 70
+
+    print(Fore.GREEN + "=" * width)
+    print("🍽️  BATTLESHIP COMMAND CENTER  🍽️".center(width))
+    print("=" * width)
+
+    print("\n" + "🎯 Mission Brief".center(width))
+    print("-" * width)
+
+    print("Sink all hidden enemy ships before you run out of turns.".center(width))
+    print("Enter coordinates to attack (row and column).".center(width))
+    print("Good luck, commander!\n".center(width))
 
 def get_player_name():
     while True:
@@ -46,10 +53,11 @@ def create_board(size=5):
     return [["~" for _ in range(size)] for _ in range(size)]
 
 def print_board(board):
-    print("\n   0 1 2 3 4")
-    print("  ----------")
+    print("\n" + "   0 1 2 3 4".center(50))
+    print("  ----------".center(50))
+
     for i, row in enumerate(board):
-        print(f"{i} | " + " ".join(row))
+        print(f"{i} | " + " ".join(row).center(30))
 
 def place_ships(board, num_ships=2):
     size = len(board)
@@ -102,7 +110,7 @@ def play_game():
     welcome()
 
     player = get_player_name()
-    print(Fore.GREEN + f"\nGood luck, {player}!\n")
+   print(Fore.GREEN + f"\nGood luck, {player}!\n".center(70))
 
     board = create_board()
     ships = place_ships(board, 2)
@@ -112,7 +120,7 @@ def play_game():
     hits = 0
 
     while turns > 0:
-        print(Fore.YELLOW + f"\nTurn {6 - turns}/5")
+       print(Fore.YELLOW + f"\n⚔️  Turn {6 - turns}/5 ⚔️\n".center(70))
         print_board(board)
 
         guess = get_guess(len(board))
@@ -127,7 +135,7 @@ def play_game():
         if guess in ships:
             board[row][col] = "S"
             hits += 1
-            print(Fore.GREEN + "🎯 Hit!")
+            print(Fore.GREEN + "🎯 DIRECT HIT!".center(70))
 
             if hits == len(ships):
                 print(Fore.GREEN + "\n🚢 You sunk all ships!")
@@ -135,7 +143,7 @@ def play_game():
                 save_score(player, "Win")
                 return
         else:
-            print(Fore.RED + "❌ Miss!")
+           print(Fore.RED + "❌ Target missed!".center(70))
             board[row][col] = "X"
 
         turns -= 1
