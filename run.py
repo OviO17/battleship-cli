@@ -110,7 +110,7 @@ def play_game():
     welcome()
 
     player = get_player_name()
-   print(Fore.GREEN + f"\nGood luck, {player}!\n".center(70))
+    print(Fore.GREEN + f"\nGood luck, {player}!\n".center(70))
 
     board = create_board()
     ships = place_ships(board, 2)
@@ -120,7 +120,7 @@ def play_game():
     hits = 0
 
     while turns > 0:
-       print(Fore.YELLOW + f"\n⚔️  Turn {6 - turns}/5 ⚔️\n".center(70))
+        print(Fore.YELLOW + f"\n⚔️  Turn {6 - turns}/5 ⚔️\n".center(70))
         print_board(board)
 
         guess = get_guess(len(board))
@@ -143,7 +143,7 @@ def play_game():
                 save_score(player, "Win")
                 return
         else:
-           print(Fore.RED + "❌ Target missed!".center(70))
+            print(Fore.RED + "❌ Target missed!".center(70))
             board[row][col] = "X"
 
         turns -= 1
